@@ -4,6 +4,8 @@
 #ifdef CMAKE_WINDOWS
 #include <Windows.h>
 
+namespace con {
+
 Console::Console(ConsoleColor cColor)
 {
 	m_CColor = cColor;
@@ -29,6 +31,8 @@ Console::Console()
 }
 
 #else
+namespace con {
+
 Console::Console(ConsoleColor cColor)
 {
 	m_CColor = cColor;
@@ -51,34 +55,34 @@ Console::Console()
 #endif
 
 // ====================== Print char =========================
-void Console::print(const char* message)
+void Console::print(const char* message) const
 {
     print(std::string(message));
 }
 
-void Console::print(const char* message, Color col, bool isForeground)
+void Console::print(const char* message, Color col, bool isForeground) const
 {
     print(std::string(message), col, isForeground);
 }
 
-void Console::print(const char* message, Color foreground, Color background)
+void Console::print(const char* message, Color foreground, Color background) const
 {
     print(std::string(message), foreground, background);
 }
 
-void Console::print(const char* message, ConsoleColor cColor)
+void Console::print(const char* message, ConsoleColor cColor) const
 {
     print(std::string(message), cColor);
 }
 // ===========================================================
 
 // ====================== Print string =======================
-void Console::print(const std::string& message)
+void Console::print(const std::string& message) const
 {
     std::cout << m_CColor.colorString(message);
 }
 
-void Console::print(const std::string& message, Color col, bool isForeground)
+void Console::print(const std::string& message, Color col, bool isForeground) const
 {
     ConsoleColor cc;
     if (isForeground) {
@@ -90,47 +94,47 @@ void Console::print(const std::string& message, Color col, bool isForeground)
     std::cout << cc.colorString(message);
 }
 
-void Console::print(const std::string& message, Color foreground, Color background)
+void Console::print(const std::string& message, Color foreground, Color background) const
 {
     ConsoleColor cc(foreground, background);
     std::cout << cc.colorString(message);
 }
 
-void Console::print(const std::string& message, ConsoleColor cColor)
+void Console::print(const std::string& message, ConsoleColor cColor) const
 {
     std::cout << cColor.colorString(message);
 }
 // ===========================================================
 
 // ====================== PrintLn char =======================
-void Console::printLn(const char* message)
+void Console::printLn(const char* message) const
 {
     printLn(std::string(message));
 }
 
-void Console::printLn(const char* message, Color col, bool isForeground)
+void Console::printLn(const char* message, Color col, bool isForeground) const
 {
     printLn(std::string(message), col, isForeground);
 }
 
-void Console::printLn(const char* message, Color foreground, Color background)
+void Console::printLn(const char* message, Color foreground, Color background) const
 {
     printLn(std::string(message), foreground, background);
 }
 
-void Console::printLn(const char* message, ConsoleColor cColor)
+void Console::printLn(const char* message, ConsoleColor cColor) const
 {
     printLn(std::string(message), cColor);
 }
 // ===========================================================
 
 // ====================== PrintLn string =====================
-void Console::printLn(const std::string& message)
+void Console::printLn(const std::string& message) const
 {
     std::cout << m_CColor.colorString(message) << std::endl;
 }
 
-void Console::printLn(const std::string& message, Color col, bool isForeground)
+void Console::printLn(const std::string& message, Color col, bool isForeground) const
 {
     ConsoleColor cc;
     if (isForeground) {
@@ -142,14 +146,14 @@ void Console::printLn(const std::string& message, Color col, bool isForeground)
     std::cout << cc.colorString(message) << std::endl;
 }
 
-void Console::printLn(const std::string& message, Color foreground, Color background)
+void Console::printLn(const std::string& message, Color foreground, Color background) const
 {
     ConsoleColor cc(foreground, background);
 
     std::cout << cc.colorString(message) << std::endl;
 }
 
-void Console::printLn(const std::string& message, ConsoleColor cColor)
+void Console::printLn(const std::string& message, ConsoleColor cColor) const
 {
     std::cout << cColor.colorString(message) << std::endl;
 }
@@ -172,3 +176,5 @@ void Console::init()
 	SetConsoleMode(hConsole, dwMode);
 }
 #endif
+
+}

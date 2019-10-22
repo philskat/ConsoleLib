@@ -1,5 +1,7 @@
 #include "color.hpp"
 
+namespace con {
+
 Color::Color(int r, int g, int b)
 {
     m_R = r;
@@ -18,7 +20,7 @@ std::string Color::getColorCodeString() const
     if (m_R != -1) {
         result = std::to_string(m_R) + ";" + std::to_string(m_G) + ";" + std::to_string(m_B);
     }
-    return result; 
+    return result;
 }
 
 int Color::getRed() const
@@ -101,7 +103,7 @@ ConsoleColor::ConsoleColor()
     m_IsItalic = false;
 }
 
-std::string ConsoleColor::colorString(const std::string& msg)
+std::string ConsoleColor::colorString(const std::string& msg) const
 {
     std::string result;
 
@@ -141,9 +143,19 @@ std::string ConsoleColor::colorString(const std::string& msg)
     return result;
 }
 
+void ConsoleColor::setForegroundColor(const Color& color)
+{
+    m_Foreground = color;
+}
+
 Color ConsoleColor::getForegroundColor() const
 {
     return m_Foreground;
+}
+
+void ConsoleColor::setBackgroundColor(const Color& color)
+{
+    m_Background = color;
 }
 
 Color ConsoleColor::getBackgroundColor() const
@@ -179,4 +191,6 @@ void ConsoleColor::setItalic(bool isItalic)
 bool ConsoleColor::isItalic() const
 {
     return m_IsItalic;
+}
+
 }
