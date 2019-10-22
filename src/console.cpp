@@ -171,6 +171,4 @@ void Console::init()
 	dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
 	SetConsoleMode(hConsole, dwMode);
 }
-#else
-void Console::init() { }
 #endif
