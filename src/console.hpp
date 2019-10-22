@@ -10,6 +10,7 @@ private:
 public:
     Console(ConsoleColor cColor);
     Console(Color foreground, Color background);
+    Console(ColorCode foreground, ColorCode background);
     Console();
 
     // ====================== Print char =========================
@@ -39,6 +40,10 @@ public:
     void printLn(const std::string& message, Color foreground, Color background);
     void printLn(const std::string& message, ConsoleColor cColor);
     // ===========================================================
+private:
+#ifdef CMAKE_WINDOWS
+    void init();
+#endif
 };
 
 #endif

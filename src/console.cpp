@@ -1,20 +1,54 @@
 #include "console.hpp"
 #include <iostream>
 
+#ifdef CMAKE_WINDOWS
+#include <Windows.h>
+
 Console::Console(ConsoleColor cColor)
 {
-    m_CColor = cColor;
+	m_CColor = cColor;
+	init();
 }
 
 Console::Console(Color foreground, Color background)
 {
-    m_CColor = ConsoleColor(foreground, background);
+	m_CColor = ConsoleColor(foreground, background);
+	init();
+}
+
+Console::Console(ColorCode foreground, ColorCode background)
+{
+	m_CColor = ConsoleColor(Color(foreground), Color(background));
+	init();
 }
 
 Console::Console()
 {
-    m_CColor = ConsoleColor();
+	m_CColor = ConsoleColor();
+	init();
 }
+
+#else
+Console::Console(ConsoleColor cColor)
+{
+	m_CColor = cColor;
+}
+
+Console::Console(Color foreground, Color background)
+{
+	m_CColor = ConsoleColor(foreground, background);
+}
+
+Console::Console(ColorCode foreground, ColorCode background)
+{
+	m_CColor = ConsoleColor(Color(foreground), Color(background));
+}
+
+Console::Console()
+{
+	m_CColor = ConsoleColor();
+}
+#endif
 
 // ====================== Print char =========================
 void Console::print(const char* message)
@@ -120,3 +154,23 @@ void Console::printLn(const std::string& message, ConsoleColor cColor)
     std::cout << cColor.colorString(message) << std::endl;
 }
 // ===========================================================
+
+#ifdef CMAKE_WINDOWS
+void Console::init()
+{
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	if (hConsole == INVALID_HANDLE_VALUE) 
+	{
+		std::cout << "ERROR: Could not get Std Handle!" << std::endl;
+		return;
+	}
+
+	DWORD dwMode = 0;
+	GetConsoleMode(hConsole, &dwMode);
+
+	dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+	SetConsoleMode(hConsole, dwMode);
+}
+#else
+void Console::init() { }
+#endif
