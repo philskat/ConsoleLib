@@ -1,4 +1,5 @@
-#include "console.hpp"
+#include "console.hpp"#
+#include <iostream>
 
 using namespace con;
 
