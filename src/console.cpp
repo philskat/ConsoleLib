@@ -1,6 +1,10 @@
 #include "../include/console.hpp"
 #include <iostream>
 
+#ifdef CMAKE_WINDOWS
+	#include <Windows.h>
+#endif
+
 namespace con {
 
 ConsoleColor Console::m_CColor;

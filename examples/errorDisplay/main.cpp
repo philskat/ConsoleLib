@@ -12,6 +12,7 @@ void throwWarning()
 
 int main()
 {
+	con::Console::init();
     try 
     {
         throwError();
