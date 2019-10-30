@@ -12,7 +12,6 @@ enum ErrorType
 class Error
 {
 private:
-    static con::Console m_Console;
     static con::ConsoleColor m_ErrroConsoleColor, m_ErrorPrefixConsoleColor;
     static con::ConsoleColor m_WarningConsoleColor, m_WarningPrefixConsoleColor;
     std::string m_Message;

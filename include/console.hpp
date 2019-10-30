@@ -18,33 +18,9 @@ namespace con {
 class Console
 {
 private:
-    ConsoleColor m_CColor; //!< Stores default ConsoleColor used by Console
+    static ConsoleColor m_CColor; //!< Stores default ConsoleColor used by Console
 public:
-    /**
-     * @brief Construct a new Console object
-     * 
-     * @param cColor ConsoleColor used for the object
-     */
-    Console(ConsoleColor cColor);
-    /**
-     * @brief Construct a new Console object
-     * 
-     * @param foreground Color object used for the text
-     * @param background Color object used for the background
-     */
-    Console(Color foreground, Color background);
-    /**
-     * @brief Construct a new Console object
-     * 
-     * @param foreground ColorCode used for the text
-     * @param background ColorCode used for the background
-     */
-    Console(ColorCode foreground, ColorCode background);
-    /**
-     * @brief Construct a new Console object
-     * 
-     */
-    Console();
+    Console() = delete;
 
     /**
      * @name Print without linebreak
@@ -57,7 +33,7 @@ public:
      * 
      * @param message Message to print to console
      */
-    void print(const char* message) const;
+    static void print(const char* message);
     /**
      * @brief Print message to console setting foreground or background color
      * 
@@ -65,7 +41,7 @@ public:
      * @param col Color used for text or background
      * @param isForeground Should the color be used for foreground
      */
-    void print(const char* message, Color col, bool isForeground=true) const;
+    static void print(const char* message, Color col, bool isForeground=true);
     /**
      * @brief Print message to console setting foreground and background color
      * 
@@ -73,14 +49,14 @@ public:
      * @param foreground Color used for text
      * @param background Color used for background
      */
-    void print(const char* message, Color foreground, Color background) const;
+    static void print(const char* message, Color foreground, Color background);
     /**
      * @brief Print message to console using ConsoleColor
      * 
      * @param message Message to print to console
      * @param cColor ConsoleColor used to format message
      */
-    void print(const char* message, ConsoleColor cColor) const;
+    static void print(const char* message, ConsoleColor cColor);
     // ===========================================================
 
     // ====================== Print string =======================
@@ -88,22 +64,22 @@ public:
      * \overload void print(const std::string& message) 
      * \see void print(const char* message)
      */
-    void print(const std::string& message) const;
+    static void print(const std::string& message);
     /**
      * \overload void print(const std::string& message, Color col, bool isForeground=true)
      * \see void print(const char* message, Color col, bool isForeground=true)
      */
-    void print(const std::string& message, Color col, bool isForeground=true) const;
+    static void print(const std::string& message, Color col, bool isForeground=true);
     /**
      * \overload void print(const std::string& message, Color foreground, Color background)
      * \see void print(const char* message, Color foreground, Color background)
      */
-    void print(const std::string& message, Color foreground, Color background) const;
+    static void print(const std::string& message, Color foreground, Color background);
     /**
      * \overload void print(const std::string& message, ConsoleColor cColor)
      * \see void print(const char* message, Color foreground, Color background)
      */
-    void print(const std::string& message, ConsoleColor cColor) const;
+    static void print(const std::string& message, ConsoleColor cColor);
     // ===========================================================
     ///@}
 
@@ -118,7 +94,7 @@ public:
      * 
      * @param message Message to print to console
      */
-    void printLn(const char* message) const;
+    static void printLn(const char* message);
     /**
      * @brief Print message with linebreak to console setting foreground or background color
      * 
@@ -126,7 +102,7 @@ public:
      * @param col Color used for text or background
      * @param isForeground Should the color be used for foreground
      */
-    void printLn(const char* message, Color col, bool isForeground=true) const;
+    static void printLn(const char* message, Color col, bool isForeground=true);
     /**
      * @brief Print message with linebreak to console setting foreground and background color
      * 
@@ -134,14 +110,14 @@ public:
      * @param foreground Color used for text
      * @param background Color used for background
      */
-    void printLn(const char* message, Color foreground, Color background) const;
+    static void printLn(const char* message, Color foreground, Color background);
     /**
      * @brief Print message with linebreak to console using ConsoleColor
      * 
      * @param message Message to print to console
      * @param cColor ConsoleColor used to format message
      */
-    void printLn(const char* message, ConsoleColor cColor) const;
+    static void printLn(const char* message, ConsoleColor cColor);
     // ===========================================================
 
     // ====================== PrintLn string =====================
@@ -149,28 +125,29 @@ public:
      * \overload void printLn(const std::string& message)
      * \see void printLn(const char* message)
      */
-    void printLn(const std::string& message) const;
+    static void printLn(const std::string& message);
     /**
      * \overload void printLn(const std::string& message, Color col, bool isForeground=true)
      * \see void printLn(const char* message, Color col, bool isForeground=true)
      */
-    void printLn(const std::string& message, Color col, bool isForeground=true) const;
+    static void printLn(const std::string& message, Color col, bool isForeground=true);
     /**
      * \overload void printLn(const std::string& message, Color foreground, Color background)
      * \see void printLn(const char* message, Color foreground, Color background)
      */
-    void printLn(const std::string& message, Color foreground, Color background) const;
+    static void printLn(const std::string& message, Color foreground, Color background);
     /**
      * \overload void printLn(const std::string& message, ConsoleColor cColor)
      * \see void printLn(const char* message, ConsoleColor cColor)
      */
-    void printLn(const std::string& message, ConsoleColor cColor) const;
+    static void printLn(const std::string& message, ConsoleColor cColor);
     // ===========================================================
     ///@}
-private:
-#ifdef CMAKE_WINDOWS
-    void init();
-#endif
+
+    static void setConsoleColor(const ConsoleColor &cColor);
+    static ConsoleColor getConsoleColor();
+
+    static void init();
 };
 
 }
