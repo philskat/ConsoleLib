@@ -144,9 +144,28 @@ public:
     // ===========================================================
     ///@}
 
+    /**
+     * @brief Set the ConsoleColor
+     * 
+     * Sets ConsoleColor used for the regular print/printLn
+     * 
+     * @param cColor New ConsoleColor
+     */
     static void setConsoleColor(const ConsoleColor &cColor);
+    /**
+     * @brief Get the ConsoleColor
+     * 
+     * @return ConsoleColor Curent ConsoleColor
+     */
     static ConsoleColor getConsoleColor();
 
+    /**
+     * @brief Init Library
+     * 
+     * This must be called before the library is used.
+     * Otherwise the library won't work on some Platforms.
+     * 
+     */
     static void init();
 };
 

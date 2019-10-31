@@ -1,0 +1,26 @@
+name: 'Build-Linux'
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'src/**'
+      - 'include/**'
+      - 'examples/**'
+    
+jobs:
+  build-linux:
+    name: 'Build-Linux'
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: actions/checkout@master
+      - name: 'Setup CMake'
+        run: |
+          mkdir build
+          cd build
+          cmake ..
+      - name: 'Build'
+        run: |
+          cd build/
+          make

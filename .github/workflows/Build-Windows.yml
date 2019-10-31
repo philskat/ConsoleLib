@@ -1,25 +1,15 @@
-name: 'Build'
+name: 'Build-Windows'
 
 on:
   push:
     branches:
-      - 'master'
+      - master
+    paths:
+      - 'src/**'
+      - 'include/**'
+      - 'examples/**'
 
 jobs:
-  build-linux:
-    name: 'Build-Linux'
-    runs-on: 'ubuntu-latest'
-    steps:
-      - uses: actions/checkout@master
-      - name: 'Setup CMake'
-        run: |
-          mkdir build
-          cd build
-          cmake ..
-      - name: 'Build'
-        run: |
-          cd build/
-          make
   build-windows:
     name: 'Build-Windows'
     runs-on: 'windows-latest'
@@ -30,8 +20,9 @@ jobs:
           mkdir build
           cd build
           cmake ..
-          dir
+        shell: cmd
       - name: 'Build'
         run: |
           cd build
           "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe" ConsoleLib.sln
+        shell: cmd

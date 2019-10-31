@@ -1,5 +1,7 @@
-![](https://github.com/TheDarkMen3000/ConsoleLib/workflows/Build/badge.svg?branch=master)
-![](https://github.com/TheDarkMen3000/ConsoleLib/workflows/Documentation/badge.svg?branch=master)
+![](https://github.com/TheDarkMen3000/ConsoleLib/workflows/Build-Linux/badge.svg)
+![](https://github.com/TheDarkMen3000/ConsoleLib/workflows/Build-Windows/badge.svg)
+
+![](https://github.com/TheDarkMen3000/ConsoleLib/workflows/Documentation/badge.svg)
 
 # ConsoleLib
 This is a small library used to color format the console output.<br>
