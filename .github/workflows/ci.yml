@@ -43,4 +43,4 @@ jobs:
       - name: Test
         working-directory: ${{github.workspace}}/build/tests
         shell: bash
-        run: ctest -C $BUILD_TYPE
+        run: ctest --output-on-failure -C $BUILD_TYPE
