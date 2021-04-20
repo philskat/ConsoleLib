@@ -61,7 +61,7 @@ void Color::getRGBFromColorCode(ColorCode col, int& r, int& g, int& b)
         r = 255; g = 255; b = 0;
         break;
     case MAGENTA:
-        r = 0; g = 0; b = 255;
+        r = 255; g = 0; b = 255;
         break;
     case CYAN:
         r = 0; g = 255; b = 255;
@@ -69,6 +69,16 @@ void Color::getRGBFromColorCode(ColorCode col, int& r, int& g, int& b)
     case NONE:
         r = -1; g = -1; b = -1;
     }
+}
+
+bool Color::operator==(const Color& other) const
+{
+    return m_R == other.m_R && m_G == other.m_G && m_B == other.m_B;
+}
+
+bool Color::operator!=(const Color& other) const
+{
+    return !(*this == other);
 }
 
 ConsoleColor::ConsoleColor(Color foreground, Color background)
