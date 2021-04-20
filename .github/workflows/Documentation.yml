@@ -1,15 +1,13 @@
 name: 'Documentation'
 
 on:
-  push:
-    branches:
-      - 'master'
-    paths:
-      - 'include/**'
+  release:
+    types:
+      - created
 
 jobs:
-  create-docs:
-    name: 'Create docs'
+  build-docs:
+    name: 'Build docs'
     runs-on: 'ubuntu-latest'
     steps:
       - uses: actions/checkout@master
@@ -17,16 +15,16 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install doxygen -y
-      - name: 'Create docs with doxygen'
+      - name: 'Build docs with doxygen'
         run: doxygen
-      - name: 'Move docs to gh-pages'
+      - name: 'Publish docs to gh-pages'
         run: |
           mv docs/ ../
           git checkout gh-pages
           rm -rf *
           mv ../docs/* .
-          git config --local user.email "philmoeller10@gmail.com"
-          git config --local user.name "TheDarkMen3000"
+          git config --local user.email ${{ secrets.COMMIT_MAIL }}
+          git config --local user.name ${{ secrets.COMMIT_USER }}
           git add .
           git commit -m "New docs from commit $GITHUB_SHA"
       - name: Push changes
