@@ -74,6 +74,13 @@ namespace con {
          */
         int getBlue() const;
 
+        bool operator==(const Color& other) const;
+        bool operator!=(const Color& other) const;
+        bool operator>(const Color& other) const = delete;
+        bool operator<(const Color& other) const = delete;
+        bool operator>=(const Color& other) const = delete;
+        bool operator<=(const Color& other) const = delete;
+
     private:
         /**
          * @brief Convert ColorCode to RGB
