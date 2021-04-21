@@ -5,11 +5,23 @@ on:
     branches:
       - main
       - develop
+    paths:
+      - src/**
+      - include/**
+      - examples/**
+      - tests/**
+      - CMakeLists.txt
 
   pull_request:
     branches:
       - main
       - develop
+    paths:
+      - src/**
+      - include/**
+      - examples/**
+      - tests/**
+      - CMakeLists.txt
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
